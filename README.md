@@ -32,7 +32,7 @@ backtrace
 
 En restant reprenant l'exemple précendent backtrace retourne
 
-```
+```gdb
 (gdb) backtrace
 #0  0x000000000040111c in incrementation (a=0x0) at foo.c:6
 #1  0x0000000000401150 in main () at foo.c:14
@@ -40,13 +40,13 @@ En restant reprenant l'exemple précendent backtrace retourne
 
 On regarde le retour de backtrace et ajout d'un breakpoint sur la fonction qui merde, ici c'est la fonction incrementation à la ligne 6 du fichier foo.c, donc :
 
-```
+```gdb
 break foo.c:6
 ```
 
 Les paramètre de break indique le fichier ou faire le breakpoint puis la ligne, dans cette exemple on créer un breakpoint dans le fichier foo.c à la ligne 6.
 
-```
+```gdb
 Breakpoint 1 at 0x401118: file foo.c, line 6.
 ```
 
@@ -62,7 +62,7 @@ On as un retour comme quoi le programme est déjà lancé, et nous demande si on
 
 On obtiens donc quelque-chose comme suit
 
-```
+```gdb
 Starting program: /home/benny/Documents/01 - Projets/foo
 
 Breakpoint 1, incrementation (a=0x0) at foo.c:6
@@ -71,13 +71,13 @@ Breakpoint 1, incrementation (a=0x0) at foo.c:6
 
 On peut donc voir que lorsque l'on appel la fonction incrementation, le pointeur 'a' pointe sur une adresse nul, et donc est la source de notre erreur de segmentation. Si cela ne se voit pas aussi simplement on peut se balader utiliser la commande :
 
-```
+```gdb
 print variable
 ```
 
 qui permet de nous afficher la valeur de la variable, dans notre exemple `print a` retourne :
 
-```
+```gdb
 (gdb) print a
 $1 = (int *) 0x0
 ```
@@ -85,7 +85,7 @@ $1 = (int *) 0x0
 ont voit bien que a est un pointeur qui pointe sur une adresse nul.
 Mais on peut aussi demander à GDB de nous afficher le contenue à l'adresse de a, la syntaxe est la même qu'en C
 
-```
+```gdb
 (gdb) print *a
 Cannot access memory at address 0x0
 ```
@@ -94,7 +94,7 @@ On ajoute '\*' devant à pour lui demander la valeur à l'adresse que pointe a.
 On remarque que GDB nous dit qu'il est impossible d'acceder à cette adresse. C'est donc bien le pointeur a qui pose soucis.
 Dans le même principe on peut affiché l'adresse du pointeur a avec '&':
 
-```
+```gdb
 (gdb) print &a
 $2 = (int **) 0x7fffffffd9e8
 ```
