@@ -130,7 +130,7 @@ Réponse : ici on affect 0 à 'a' ce qui donne un pointeur a l'adresse 0x0, qui 
 Et sinon GOOGLE est ton ami.
 
 # Petit récap 
-## des commande utile avec GDB :
+### Les commande utile avec GDB :
 
 - run <paramètre>
 - backtrace
