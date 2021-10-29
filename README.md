@@ -129,7 +129,8 @@ int main()
 Réponse : ici on affect 0 à 'a' ce qui donne un pointeur a l'adresse 0x0, qui est l'erreur que nous ressort GDB.
 Et sinon GOOGLE est ton ami.
 
-Petit récap des commande utile avec GDB :
+# Petit récap 
+## des commande utile avec GDB :
 
 - run <paramètre>
 - backtrace
